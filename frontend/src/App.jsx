@@ -2,11 +2,15 @@ import { Routes, Route } from "react-router";
 import ChatPage from "./pages/ChatPage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
+import { useEffect } from "react";
 
 function App() {
-  const {authUser,isLoading,login}=useAuthStore();
+  const { checkAuth, isCheckingAuth } = useAuthStore();
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
 
-  console.log(authUser,isLoading);
+  console.log("isCheckingAuth:", isCheckingAuth);
   return (
     <div className="min-h-screen bg-slate-900 relative flex items-center justify-center p-4 overflow-hidden">
       {/* DECORATORS - GRID BG & GLOW SHAPES */}
